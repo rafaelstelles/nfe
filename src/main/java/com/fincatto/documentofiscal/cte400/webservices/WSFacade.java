@@ -1,5 +1,13 @@
 package com.fincatto.documentofiscal.cte400.webservices;
 
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
+import java.util.List;
+
 import com.fincatto.documentofiscal.DFUnidadeFederativa;
 import com.fincatto.documentofiscal.cte.CTeConfig;
 import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoIntRetorno;
@@ -16,16 +24,6 @@ import com.fincatto.documentofiscal.cte400.classes.evento.insucessoentrega.CTeEn
 import com.fincatto.documentofiscal.cte400.classes.nota.CTeNota;
 import com.fincatto.documentofiscal.cte400.classes.nota.consulta.CTeNotaConsultaRetorno;
 import com.fincatto.documentofiscal.cte400.classes.os.CTeOS;
-import com.fincatto.documentofiscal.utils.DFSocketFactory;
-import org.apache.commons.httpclient.protocol.Protocol;
-
-import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
-import java.util.List;
 
 public class WSFacade {
 
@@ -47,7 +45,7 @@ public class WSFacade {
     private final WSRecepcaoCTeOS wsRecepcaoCTeOS;
 
     public WSFacade(final CTeConfig config) throws IOException, KeyManagementException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException {
-        Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
+		//Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
         this.wsStatusConsulta = new WSStatusConsulta(config);
         this.wsRecepcaoCTe = new WSRecepcaoCTe(config);
         this.wsDistribuicaoCTe = new WSDistribuicaoCTe(config);

@@ -1,17 +1,5 @@
 package com.fincatto.documentofiscal.nfe.webservices.distribuicao;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.nfe.NFeConfig;
-import com.fincatto.documentofiscal.nfe.classes.distribuicao.*;
-import com.fincatto.documentofiscal.nfe310.classes.NFAutorizador31;
-import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
-import com.fincatto.documentofiscal.utils.DFSocketFactory;
-import com.fincatto.documentofiscal.validadores.DFXMLValidador;
-import org.apache.axiom.om.OMElement;
-import org.apache.axiom.om.util.AXIOMUtil;
-import org.apache.commons.lang3.StringUtils;
-
-import javax.xml.stream.XMLStreamException;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
@@ -19,7 +7,22 @@ import java.nio.charset.StandardCharsets;
 import java.rmi.RemoteException;
 import java.util.Base64;
 import java.util.zip.GZIPInputStream;
-import org.apache.commons.httpclient.protocol.Protocol;
+
+import javax.xml.stream.XMLStreamException;
+
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.util.AXIOMUtil;
+import org.apache.commons.lang3.StringUtils;
+
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
+import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoConsultaChaveAcesso;
+import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoConsultaNSU;
+import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoInt;
+import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoIntRetorno;
+import com.fincatto.documentofiscal.nfe.classes.distribuicao.NFDistribuicaoNSU;
+import com.fincatto.documentofiscal.nfe400.classes.NFAutorizador400;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 
 public class WSDistribuicaoNFe {
 
@@ -41,7 +44,7 @@ public class WSDistribuicaoNFe {
      */
     public NFDistribuicaoIntRetorno consultar(final String cpfOuCnpj, final DFUnidadeFederativa uf, final String chaveAcesso, final String nsu, final String ultNsu) throws Exception {
         try {
-            Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
+			//Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
             String xmlEnvio = this.gerarNFDistribuicaoInt(cpfOuCnpj, uf, chaveAcesso, nsu, ultNsu).toString();
 
             // valida o lote assinado, para verificar se o xsd foi satisfeito, antes de comunicar com a sefaz

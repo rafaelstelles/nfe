@@ -1,15 +1,5 @@
 package com.fincatto.documentofiscal.cte.webservices.distribuicao;
 
-import com.fincatto.documentofiscal.DFUnidadeFederativa;
-import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoConsultaNSU;
-import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoInt;
-import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoIntRetorno;
-import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoNSU;
-import com.fincatto.documentofiscal.cte200.classes.CTAutorizador;
-import com.fincatto.documentofiscal.cte.CTeConfig;
-import com.fincatto.documentofiscal.nfe.NFeConfig;
-import com.fincatto.documentofiscal.utils.DFSocketFactory;
-import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
@@ -17,11 +7,22 @@ import java.nio.charset.StandardCharsets;
 import java.rmi.RemoteException;
 import java.util.Base64;
 import java.util.zip.GZIPInputStream;
+
 import javax.xml.stream.XMLStreamException;
+
 import org.apache.axiom.om.OMElement;
 import org.apache.axiom.om.util.AXIOMUtil;
-import org.apache.commons.httpclient.protocol.Protocol;
 import org.apache.commons.lang3.StringUtils;
+
+import com.fincatto.documentofiscal.DFUnidadeFederativa;
+import com.fincatto.documentofiscal.cte.CTeConfig;
+import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoConsultaNSU;
+import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoInt;
+import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoIntRetorno;
+import com.fincatto.documentofiscal.cte.classes.distribuicao.CTDistribuicaoNSU;
+import com.fincatto.documentofiscal.cte200.classes.CTAutorizador;
+import com.fincatto.documentofiscal.nfe.NFeConfig;
+import com.fincatto.documentofiscal.validadores.DFXMLValidador;
 
 public class WSDistribuicaoCTe {
 
@@ -38,7 +39,7 @@ public class WSDistribuicaoCTe {
      */
     @Deprecated
     public static String consultar(final CTDistribuicaoInt distDFeInt, final NFeConfig config) throws Exception {
-        Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
+        //Protocol.registerProtocol("https", new Protocol("https", new DFSocketFactory(config), 443));
         try {
             final OMElement ome = AXIOMUtil.stringToOM(distDFeInt.toString());
 
