@@ -1,7 +1,7 @@
 package com.fincatto.documentofiscal.utils;
 
 import org.apache.axis2.context.MessageContext;
-import org.apache.axis2.transport.http.HTTPConstants;
+import org.apache.axis2.kernel.http.HTTPConstants;
 
 import com.fincatto.documentofiscal.DFConfig;
 

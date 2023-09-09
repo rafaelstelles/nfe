@@ -3,7 +3,7 @@ package com.fincatto.documentofiscal.nfe400.webservices.gerado;
 import javax.xml.namespace.QName;
 
 import org.apache.axis2.client.Stub;
-import org.apache.axis2.transport.http.HTTPConstants;
+import org.apache.axis2.kernel.http.HTTPConstants;
 
 import com.fincatto.documentofiscal.DFConfig;
 import com.fincatto.documentofiscal.utils.MessageContextFactory;
